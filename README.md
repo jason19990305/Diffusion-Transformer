@@ -91,3 +91,6 @@ python generate_gif.py
 
 ## Result
 ![Evaluation Results](./evaluation_results.png)
+
+### Deblurring Process
+![Deblurring Process](./gifs/deblur_process_sample_0.gif)
