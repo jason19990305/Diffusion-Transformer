@@ -1,8 +1,15 @@
 # Diffusion Transformer (DiT)
 
+
+
+
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-orange)](https://pytorch.org/)
 [![Diffusers](https://img.shields.io/badge/Diffusers-0.20%2B-yellow)](https://huggingface.co/docs/diffusers/index)
+
+
+HackMD Article : https://hackmd.io/@bGCXESmGSgeAArScMaBxLA/B1vYJqVu-g
+
 
 This project implements an image generation model based on the **Diffusion Transformer (DiT)** architecture. It utilizes a Transformer to learn and predict the denoising process of a Diffusion Model. The project leverages the **diffusers** library for noise scheduling and performs operations within the Latent Space of a VAE to significantly improve generation efficiency and quality.
 
