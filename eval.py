@@ -3,7 +3,7 @@ import torch.nn.functional as F
 import matplotlib.pyplot as plt
 import numpy as np
 from tqdm import tqdm
-from diffusers import DDPMScheduler, DDIMScheduler
+from diffusers import DDIMScheduler
 
 # Import custom modules from the LDM package
 from DiT.noise_predictor import DiT
@@ -55,14 +55,13 @@ def run_evaluation():
     vae = AutoencoderKL.from_pretrained("stabilityai/sd-vae-ft-mse").to(DEVICE)
     vae.eval()
     
-    # Initialize the noise scheduler for adding noise during sampling
-    noise_scheduler = DDPMScheduler(
-        num_train_timesteps=1000,
+    # Initialize the noise scheduler for adding noise during sampling    
+    inference_scheduler = DDIMScheduler(
+        num_train_timesteps=TOTAL_TIMESTEPS,
         beta_schedule="linear", 
         prediction_type="epsilon",
         clip_sample=False            
     )
-    inference_scheduler = DDIMScheduler.from_config(noise_scheduler.config)
     inference_scheduler.set_timesteps(num_inference_steps=SAMPLING_STEPS, device=DEVICE)
 
 
