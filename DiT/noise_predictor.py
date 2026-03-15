@@ -350,7 +350,7 @@ if __name__ == '__main__':
 
     # 5. Initialize and Summarize Custom UNet
     print("\n--- Initializing Custom UNet Architecture ---")
-    model = SimpleLDMUNet(in_channels=4, out_channels=4).to(device)
+    model = DiT().to(device)
     
     # Display model structure using torchinfo.summary
     # This shows Output Shapes for each layer and Skip Connections
