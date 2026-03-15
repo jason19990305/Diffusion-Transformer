@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.optim as optim
 from tqdm import tqdm
 import os
-from diffusers import DDPMScheduler, DDIMScheduler
+from diffusers import DDIMScheduler
 from diffusers.training_utils import compute_snr
 
 
@@ -40,7 +40,7 @@ def run_overfit():
     # ==========================================
     model = DiT().to(DEVICE)
     # Initialize DDPM Scheduler for noise addition during training
-    noise_scheduler = DDPMScheduler(
+    noise_scheduler = DDIMScheduler(
         num_train_timesteps=TIMESTEPS,
         beta_schedule="linear", # Linear beta schedule from beta_start to beta_end
         prediction_type="epsilon" # Predict noise (epsilon) directly
@@ -87,6 +87,7 @@ def run_overfit():
         # [OVERFIT CHANGE] Randomly sample timesteps and noise for each iteration to simulate the diffusion process, but the input latents remain the same
         # Randomly sample timesteps for each image in the batch
         t = torch.randint(0, TIMESTEPS, (latents.shape[0],), device=DEVICE).long()
+        print(f"Step {step}: Timestep = {t[0]}")
         noise = torch.randn_like(latents)
         latents_noisy = noise_scheduler.add_noise(latents, noise, t)
 
